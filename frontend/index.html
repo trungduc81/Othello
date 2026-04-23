@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Othello AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="game-container">
+            <h1>Othello - Game AI</h1>
+            
+            <div class="game-info">
+                <div class="player-info">
+                    <span class="player-label">Black (You)</span>
+                    <span class="player-score" id="blackScore">2</span>
+                </div>
+                <div class="divider">|</div>
+                <div class="player-info">
+                    <span class="player-label" id="aiLabel" >White (AI)</span>
+                    <span class="player-score" id="whiteScore">2</span>
+                </div>
+            </div>
+            
+            <div class="turn-info" id="turnInfo">● Lượt của Đen</div>
+
+            <div class="board-wrapper">
+                <div class="corner-empty"></div> <div class="letters-row">
+                    <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span>
+                </div>
+                
+                <div class="numbers-col">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                </div>
+                
+                <canvas id="gameBoard" width="480" height="480"></canvas>
+            </div>
+
+           <div class="controls">
+                <div class="difficulty-selector">
+                    <label for="difficulty">Độ khó AI:</label>
+                    <select id="difficulty" class="select-dropdown">
+                        <option value="2">Dễ </option>
+                        <option value="4">Trung bình </option>
+                        <option value="6" selected>Khó </option>
+                    </select>
+                </div>
+                
+                <button id="newGameBtn" class="btn btn-primary">New Game</button>
+            </div>
+
+            <div class="status" id="status"></div>
+        </div>
+
+        <div class="history-panel">
+            <h2>Lịch sử nước đi</h2>
+            <div class="history-header">
+                <div class="header-col">⚫ Đen (Người)</div>
+                <div class="header-col">⚪ Trắng (Máy)</div>
+            </div>
+            
+            <div class="history-content">
+                <ul class="history-list" id="historyList">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
