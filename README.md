@@ -1,153 +1,93 @@
-# 🎮 Game Othello AI - B23CN864
+# 🎮 Othello AI Game
 
-Bài tập lớn môn **Trí tuệ nhân tạo** - Implementasi Game Othello với AI Minimax
+Trò chơi Othello (Reversi) với AI sử dụng thuật toán Minimax và Alpha-Beta Pruning.
 
-## 📋 Cấu trúc dự án
+## 📁 Cấu trúc dự án
 
 ```
-B23CN864/
-├── frontend/                          # Giao diện web HTML/CSS/JS
-│   ├── index.html                    # Bàn cờ UI
-│   ├── style.css                     # Styling responsive
-│   └── game.js                       # Logic game + API calls
+Othello/
+├── frontend/
+│   ├── index.html      - Giao diện bàn cờ
+│   ├── style.css       - CSS styling
+│   └── game.js         - Logic trò chơi
 │
-└── backend/                          # Spring Boot Java
-    ├── pom.xml                       # Maven dependencies
-    ├── src/main/java/com/ptit/othello/
-    │   ├── Application.java          # Entry point Spring Boot
-    │   ├── api/
-    │   │   ├── AiController.java    # REST API endpoints
-    │   │   └── dto/
-    │   │       ├── MoveRequest.java  # Request DTO
-    │   │       ├── MoveResponse.java # Response DTO
-    │   │       └── GameStateResponse.java
-    │   ├── core/
-    │   │   ├── Board.java            # Quản lý bàn cờ 8x8
-    │   │   └── GameRules.java        # Luật game + flip logic
-    │   └── ai/
-    │       ├── Minimax.java          # Minimax + Alpha-Beta pruning
-    │       └── Heuristic.java        # Hàm đánh giá vị trí
-    └── src/main/resources/
-        └── application.properties    # Cấu hình Spring Boot
+└── backend/
+    ├── pom.xml         - Maven config
+    └── src/main/java/com/ptit/othello/
+        ├── Application.java
+        ├── api/
+        │   ├── AiController.java
+        │   └── dto/
+        ├── core/
+        │   ├── Board.java
+        │   └── GameRules.java
+        └── ai/
+            ├── Minimax.java
+            └── Heuristic.java
 ```
 
-## 🎯 Tính năng chính
+## 🛠️ Yêu cầu hệ thống
 
-### Frontend
-✅ Bàn cờ 8x8 vẽ bằng Canvas  
-✅ Hiển thị nước đi hợp lệ  
-✅ Click để chơi  
-✅ Thông tin lượt chơi real-time  
-✅ Nút New Game, Pass  
+- **Java**: 8+
+- **Maven**: 3.6+
+- **Python**: 3.7+ (chạy frontend server)
+- **Git**: Để clone project
 
-### Backend - Phần AI quan trọng nhất
-✅ **Minimax Algorithm** - Tìm nước đi tốt nhất  
-✅ **Alpha-Beta Pruning** - Tối ưu hóa tìm kiếm  
-✅ **Heuristic Function** - Đánh giá vị trí game:
-   - Position Score: Góc (100), cạnh, giữa
-   - Piece Differential: Chênh lệch số quân
-   - Mobility Score: Số nước đi khả dụng
-✅ **REST API** - 3 endpoints chính:
-   - POST /api/ai/move - Lấy nước đi AI
-   - POST /api/game/validate-move - Kiểm tra nước
-   - POST /api/game/next-player - Xác định lượt tiếp theo
+## 📥 Cài đặt
 
-## 🚀 Cách chạy
-
-### 1. Chạy Frontend (trên cổng 5000)
+### Clone project
 ```bash
-cd B23CN864/frontend
-python -m http.server 5000
+git clone https://github.com/trungduc81/Othello.git
+cd Othello
 ```
-Truy cập: **http://localhost:5000**
 
-### 2. Chạy Backend (trên cổng 8080)
+### Backend - Build
 ```bash
-cd B23CN864/backend
+cd backend
 mvn clean install
+```
+
+### Frontend - Không cần install (HTML/CSS/JS thuần)
+
+## 🚀 Chạy ứng dụng
+
+### Terminal 1: Chạy Backend (Port 8080)
+```bash
+cd backend
 mvn spring-boot:run
 ```
-API: **http://localhost:8080/api**  
-Health check: **http://localhost:8080/api/health**
-
-## 🔧 Chi tiết thuật toán AI
-
-### Minimax với Alpha-Beta Pruning
-- **Độ sâu tìm kiếm**: 6 nước (có thể điều chỉnh)
-- **Chiến lược**: Maximize score cho AI (WHITE), Minimize cho người chơi (BLACK)
-- **Pruning**: Loại bỏ các nhánh không cần thiết → tăng tốc độ
-- **Edge Cases**: Xử lý khi một player không có nước hợp lệ
-
-### Heuristic Function
-```
-Score = PositionScore + PieceDifferential + MobilityScore
-
-- PositionScore: Trọng số vị trí (góc quan trọng nhất)
-- PieceDifferential: (PlayerPieces - OpponentPieces) * 2
-- MobilityScore: (PlayerMoves - OpponentMoves) * 5
+Hoặc chạy JAR sau khi build:
+```bash
+java -jar target/othello-ai-1.0.0.jar
 ```
 
-### Endgame Evaluation
-- Thắng: +10000
-- Thua: -10000
-- Hòa: 0
-
-## 📝 API Endpoints
-
-### 1. Get AI Move
-```
-POST /api/ai/move
-Content-Type: application/json
-
-{
-    "board": [[0,0,0,...],[...],...],
-    "playerColor": 2  // 1=BLACK, 2=WHITE
-}
-
-Response:
-{
-    "move": [3, 3],
-    "message": "Nước đi của AI",
-    "success": true
-}
+### Terminal 2: Chạy Frontend (Port 5000)
+```bash
+cd frontend
+python -m http.server 5000
 ```
 
-### 2. Validate Move
-```
-POST /api/game/validate-move
-{
-    "board": [[...],...],
-    "playerColor": 1
-}
+### Truy cập trò chơi
+Mở browser: **http://localhost:5000**
 
-Response:
-{
-    "board": [[...],...],
-    "validMoves": [[...],[...],...],
-    "currentPlayer": 1,
-    "blackCount": 5,
-    "whiteCount": 4,
-    "gameOver": false
-}
-```
+## 🎮 Cách chơi
 
-### 3. Next Player
-```
-POST /api/game/next-player
-{
-    "board": [[...],...],
-    "playerColor": 1
-}
-```
+- **Quân Đen**: Bạn (người chơi)
+- **Quân Trắng**: AI
+- Click vào ô có dấu chấm để đặt quân
+- AI tự động đi sau khi bạn đi
+- Chọn độ khó: Dễ (2), Trung bình (4), Khó (6)
 
-## 🎓 Kiến thức liên quan
+## 📂 File quan trọng
 
-- **Game Theory**: Min-max principle
-- **Algorithm**: Tree Search, Pruning
-- **Heuristics**: Position evaluation
-- **Data Structure**: 2D array for board
-- **API Design**: RESTful service
-- **Testing**: Alpha-Beta pruning efficiency
+| File | Chức năng |
+|------|----------|
+| `Minimax.java` | Thuật toán Minimax + Alpha-Beta Pruning |
+| `Heuristic.java` | Hàm đánh giá vị trí trò chơi |
+| `GameRules.java` | Luật Othello + kiểm tra nước hợp lệ |
+| `Board.java` | Quản lý trạng thái bàn cờ |
+| `AiController.java` | REST API cho AI |
+| `game.js` | Frontend logic |
 
 ## 📊 Độ phức tạp
 
