@@ -6,24 +6,29 @@ Trò chơi Othello (Reversi) với AI sử dụng thuật toán Minimax và Alph
 
 ```
 Othello/
-├── frontend/
-│   ├── index.html      - Giao diện bàn cờ
-│   ├── style.css       - CSS styling
-│   └── game.js         - Logic trò chơi
+├── backend/
+│   ├── .mvn/wrapper/                  - Maven Wrapper
+│   ├── pom.xml                        - Maven dependencies
+│   └── src/main/
+│       ├── java/com/ptit/othello/
+│       │   ├── Application.java       - Entry point
+│       │   ├── ai/                    - Thuật toán AI & heuristic
+│       │   │   ├── Minimax.java       - Minimax + Alpha-Beta Pruning
+│       │   │   └── Heuristic.java     - Hàm đánh giá vị trí
+│       │   ├── api/                   - REST API endpoints
+│       │   │   ├── AiController.java
+│       │   │   └── dto/               - Data Transfer Objects
+│       │   │       ├── GameStateResponse.java
+│       │   │       ├── MoveRequest.java
+│       │   │       └── MoveResponse.java
+│       │   └── core/                  - Core game logic
+│       │       ├── Board.java         - Quản lý bàn cờ
+│       │       └── GameRules.java     - Luật game + flip logic
+│       └── resources/
+│           └── application.properties
 │
-└── backend/
-    ├── pom.xml         - Maven config
-    └── src/main/java/com/ptit/othello/
-        ├── Application.java
-        ├── api/
-        │   ├── AiController.java
-        │   └── dto/
-        ├── core/
-        │   ├── Board.java
-        │   └── GameRules.java
-        └── ai/
-            ├── Minimax.java
-            └── Heuristic.java
+└── frontend/                          - Web UI (HTML/CSS/JS)
+    ├── index.html                     
+    ├── game.js                        
+    └── style.css                      
 ```
-
-
