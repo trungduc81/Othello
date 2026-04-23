@@ -1,4 +1,3 @@
-# Maven
 target/
 *.jar
 *.war
@@ -11,7 +10,6 @@ release.properties
 dependency-reduced-pom.xml
 .flattened-pom.xml
 
-# IDE
 .idea/
 .vscode/
 *.iml
@@ -23,17 +21,6 @@ dependency-reduced-pom.xml
 *.sln
 *.sw?
 
-# OS
-.DS_Store
-Thumbs.db
-*.log
-
-# Node (nếu dùng frontend build tools)
-node_modules/
-package-lock.json
-yarn.lock
-
-# Build
 *.class
 *.classpath
 build/
