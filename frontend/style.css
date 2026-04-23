@@ -1,8 +1,7 @@
-/* --- CSS Reset cơ bản --- */
 * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { background-color: #f0f2f5; margin: 0; padding: 20px; color: #333; }
 
-/* --- Layout chính: Chia 2 cột (Flexbox) --- */
+/*  Layout chính: Chia 2 cột */
 .main-wrapper {
     display: flex;
     justify-content: center;
@@ -12,7 +11,7 @@ body { background-color: #f0f2f5; margin: 0; padding: 20px; color: #333; }
     margin: 0 auto;
 }
 
-/* --- Cột Trái: Bàn cờ --- */
+/* Bàn cờ */
 .game-container {
     background: #ffffff;
     padding: 20px 30px;
@@ -29,16 +28,13 @@ h1 { margin-top: 0; color: #1a1a1a; }
 .player-score { font-size: 1.5rem; color: #007bff; }
 .turn-info { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #e53935; }
 
-/* --- Ma thuật CSS Grid cho viền tọa độ --- */
+/* Viền tọa độ */
 .board-wrapper {
     display: grid;
-    /* Cột 1: Rộng 30px cho số, Cột 2: Rộng 480px cho bàn cờ */
     grid-template-columns: 30px 480px; 
-    /* Hàng 1: Cao 30px cho chữ, Hàng 2: Cao 480px cho bàn cờ */
     grid-template-rows: 30px 480px;
     margin-bottom: 20px;
 }
-/*.corner-empty { /* Để trống góc */ 
 
 .letters-row {
     display: flex;
@@ -66,7 +62,7 @@ canvas#gameBoard {
     cursor: pointer;
 }
 
-/* --- Cột Phải: Lịch sử nước đi --- */
+/* Lịch sử nước đi */
 .history-panel {
     background: #ffffff;
     width: 320px;
@@ -85,24 +81,22 @@ canvas#gameBoard {
 }
 .header-col { width: 50%; text-align: center; }
 
-/* Khu vực cuộn */
+/* Thanh cuộn */
 .history-content {
     flex-grow: 1;
-    overflow-y: auto; /* Tự động hiện thanh cuộn nếu quá dài */
+    overflow-y: auto; 
     padding-right: 8px;
 }
 
-/* Chia list thành 2 cột tự động bằng Grid */
 .history-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Chia 2 cột bằng nhau */
-    row-gap: 8px; /* Khoảng cách các hàng */
+    grid-template-columns: 1fr 1fr;
+    row-gap: 8px; 
 }
 
-/* JS sẽ thêm class .black-move hoặc .white-move vào thẻ li */
 .history-list li {
     padding: 6px 10px;
     border-radius: 4px;
@@ -112,36 +106,32 @@ canvas#gameBoard {
 .history-list li.black-move { background-color: #f1f3f5; color: #000; border-left: 3px solid #000; margin-right: 5px; }
 .history-list li.white-move { background-color: #e9ecef; color: #333; border-left: 3px solid #fff; margin-left: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
-/* --- Buttons --- */
 .btn { padding: 10px 20px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.2s; font-weight: bold; }
 .btn-primary { background: #007bff; color: white; }
 .btn-primary:hover { background: #0056b3; }
 
-/* Sắp xếp lại khu vực chứa nút bấm và chọn độ khó cho ngay ngắn */
 .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Khoảng cách giữa thẻ Select và nút New Game */
+    gap: 20px; 
     margin-top: 15px;
 }
 
-/* Trang trí cho thẻ Select */
 .select-dropdown {
     padding: 10px 15px;
     border-radius: 8px;
-    border: 2px solid #007bff; /* Viền xanh blue */
-    background-color: #e6f2ff; /* Nền xanh nhạt */
-    color: #0056b3;            /* Chữ xanh đậm */
+    border: 2px solid #007bff; 
+    background-color: #e6f2ff; 
+    color: #0056b3;            
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    transition: all 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+    transition: all 0.3s ease; 
     box-shadow: 0 2px 4px rgba(0,123,255,0.1);
 }
 
-/* Hiệu ứng khi di chuột hoặc bấm vào */
 .select-dropdown:hover, .select-dropdown:focus {
     background-color: #cce5ff;
     border-color: #0056b3;
